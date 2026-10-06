@@ -34,6 +34,8 @@
     h1 { margin: 0 0 12px; font-size: clamp(2rem, 7vw, 3rem); }
     p { color: #475569; line-height: 1.6; }
 
+    .actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
     button {
       margin-top: 16px;
       padding: 12px 20px;
@@ -47,6 +49,8 @@
     }
 
     button:hover { background: #1d4ed8; }
+    button.secondary { background: #e2e8f0; color: #172554; }
+    button.secondary:hover { background: #cbd5e1; }
     button:focus-visible { outline: 3px solid #93c5fd; outline-offset: 3px; }
     #message { min-height: 1.6em; margin-bottom: 0; color: #1d4ed8; font-weight: 600; }
   </style>
@@ -55,15 +59,24 @@
   <main>
     <h1>A small hello</h1>
     <p>This page is made with plain HTML, CSS, and JavaScript.</p>
-    <button id="hello-button" type="button">Say hello</button>
+    <div class="actions">
+      <button id="hello-button" type="button">Say hello</button>
+      <button id="reset-button" class="secondary" type="button">Reset</button>
+    </div>
     <p id="message" aria-live="polite">Your message will appear here.</p>
   </main>
   <script>
-    const button = document.querySelector("#hello-button");
+    const initialMessage = "Your message will appear here.";
+    const helloButton = document.querySelector("#hello-button");
+    const resetButton = document.querySelector("#reset-button");
     const message = document.querySelector("#message");
 
-    button.addEventListener("click", () => {
+    helloButton.addEventListener("click", () => {
       message.textContent = "Hello! Thanks for stopping by.";
+    });
+
+    resetButton.addEventListener("click", () => {
+      message.textContent = initialMessage;
     });
   </script>
 </body>
